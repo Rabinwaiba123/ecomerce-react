@@ -1,70 +1,102 @@
-# Getting Started with Create React App
+# CodeBook
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CodeBook is a React-based eBook storefront for computer science readers. It lets visitors browse products, view product details, search the catalog, manage a cart, and place orders after signing in. The app also includes a dashboard for authenticated users and a dark mode toggle for the main interface.
+
+## Features
+
+- Product browsing with featured products and detailed product pages
+- Search across the catalog
+- User registration and login
+- Protected cart, order summary, and dashboard routes
+- Cart state and order creation for authenticated users
+- Dark mode preference stored in the browser
+- Responsive layout with shared header, footer, and reusable UI components
+
+## Tech Stack
+
+- React 18
+- React Router v6
+- Tailwind CSS
+- json-server and json-server-auth for the local API
+- react-toastify for notifications
+
+## Project Structure
+
+- `src/pages` contains the routed pages for home, products, auth, cart, orders, and dashboard
+- `src/components` contains shared layout and UI components
+- `src/context` and `src/reducers` manage cart and filter state
+- `src/services` contains the API calls for products, auth, and user orders
+- `data/db.json` provides the mock backend data used by json-server
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 16+ recommended
+- npm
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Configure the API Host
+
+The app reads its backend URL from `REACT_APP_HOST`. Create a `.env` file in the project root and point it to your local JSON server or API gateway.
+
+```bash
+REACT_APP_HOST=http://localhost:5000
+```
+
+### Start the Frontend
+
+```bash
+npm start
+```
+
+The app runs at `http://localhost:3000`.
+
+### Start the Mock Backend
+
+This project expects a json-server-auth backend backed by `data/db.json`. One common local setup is:
+
+```bash
+npx json-server-auth --watch data/db.json --port 5000
+```
+
+If you already have an API service running elsewhere, just update `REACT_APP_HOST` to match it.
+
+### Build for Production
+
+```bash
+npm run build
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
+- `npm start` runs the app in development mode
+- `npm test` starts the test runner
+- `npm run build` creates an optimized production build
+- `npm run eject` exposes the underlying Create React App configuration
 
-### `npm start`
+## Routing Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- `/` home page
+- `/products` product listing
+- `/products/:id` product details
+- `/login` sign in
+- `/register` sign up
+- `/cart` protected cart page
+- `/order-summary` protected order summary page
+- `/dashboard` protected user dashboard
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Deployment
 
-### `npm test`
+The repo includes a `netlify.toml` redirect so client-side routes can be refreshed directly in production. For static hosting, deploy the built `build` folder after setting `REACT_APP_HOST` to your production API.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Notes
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Authentication state is stored in `sessionStorage`
+- Dark mode is stored in `localStorage`
+- Mock product and order data live under `data/`
